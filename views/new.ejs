@@ -5,30 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Page</title>
+
 </head>
 <body>
     <h1>New Page</h1>
-    <form action="/products" method="POST">
 
-        <label for="name">Name:</label>
-            <input type="text" name="name" />
-
-        <label for="description">description:</label>
-            <input type="text" name="description" />
-
-        <label for="price">Price:</label>
-            <input type="number" name="price" />
-
-        <label for="quantity">Quantity:</label>
-            <input type="number" name="qty" />
-
-        <label for="image">Image:</label>
-            <input type="image" name="img" />
+    <div class="new-container">
+        <div class="form-image"></div>
+        <div>
+            <form action="/products" method="POST">
         
-        <input type="submit" value="Create">
+                <label for="name">Name:</label>
+                    <input type="text" name="name" />
+                <br>
+                <label for="description">description:</label>
+                    <input type="text" name="description" />
+                <br>
+                <label for="price">Price:</label>
+                    <input type="number" name="price" />
+                <br>
+                <label for="quantity">Quantity:</label>
+                    <input type="number" name="qty" />
+                <br>
+                <label for="image">Image:</label>
+                    <input type="file" name="img" />
+                <br>
+                <label for="Submit"></label>
+                <input type="submit" value="Create" />
         
-
-    </form>
+            </form>
+        </div>
+    </div>
     
 </body>
 </html>

@@ -34,17 +34,21 @@ app.use(express.urlencoded({ extended: false}))
 // Seed
 
 app.get('/products/seed', (req, res) => {
-	Book.deleteMany({}, (error, seeds) => {});
+	// Product.deleteMany({}, (error, seeds) => {});
 
-	Book.create(productSeed, (error, data) => {
-		res.redirect('/products');
+	Product.create(productSeed, (error, data) => {
+		res.render('new.ejs');
 	});
 });
 
 
 // === INDEX ===
 app.get('/products', (req, res) => {
-    res.render('index.ejs')
+    Product.find({}, allProducts => {
+        res.render('index.ejs', {
+            products: allProducts
+        })
+    })
 })
 
 
@@ -59,13 +63,20 @@ app.get('/products/new', (req, res) => {
 // === Create ===
 app.post('/products', (req, res) => {
     Product.create(req.body, (err, createdProduct) => {
-        res.redirect('/products')
+        res.redirect('products')
     })
 })
 
 
 // === Edit ===
 // === Show ===
+app.get('/products/:id', (req, res) => {
+    Product.findById(req.params.id, (foundProduct) => {
+        res.render('show.ejs', {
+            product: foundProduct
+        })
+    })
+})
 
 
 // === ROUTES end ===
