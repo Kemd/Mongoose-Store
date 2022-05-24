@@ -1,7 +1,7 @@
 // === Dependencies ===
 require('dotenv').config()
 const express = require('express')
-const Product = require('./models/products')
+const Product = require('./models/products.js')
 // === seed data for testing, delete after === 
 const productSeed = require('./models/productSeed')
 const mongoose = require('mongoose')
@@ -22,7 +22,9 @@ db.on('connected', () => console.log('Mongodb is connected'))
 db.on('disconnected', () => console.log('Mongodb is disconnected'))
 
 // === MiddleWare, enables req.body === 
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({
+    extended: false
+}))
 
 
 // === ROUTES start ===
@@ -32,21 +34,20 @@ app.use(express.urlencoded({ extended: false}))
 
 // Routes / Controllers
 // Seed
-
 app.get('/products/seed', (req, res) => {
-	// Product.deleteMany({}, (error, seeds) => {});
+    // Product.deleteMany({}, (error, seeds) => {});
 
-	Product.create(productSeed, (error, data) => {
-		res.render('new.ejs');
-	});
+    Product.create(productSeed, (error, data) => {
+        res.render('new.ejs');
+    });
 });
 
 
 // === INDEX ===
 app.get('/products', (req, res) => {
-    Product.find({}, allProducts => {
+    Product.find({}, (err, allProducts) => {
         res.render('index.ejs', {
-            products: allProducts
+            products: allProducts,
         })
     })
 })
@@ -63,7 +64,7 @@ app.get('/products/new', (req, res) => {
 // === Create ===
 app.post('/products', (req, res) => {
     Product.create(req.body, (err, createdProduct) => {
-        res.redirect('products')
+        res.redirect('/products')
     })
 })
 
@@ -71,7 +72,7 @@ app.post('/products', (req, res) => {
 // === Edit ===
 // === Show ===
 app.get('/products/:id', (req, res) => {
-    Product.findById(req.params.id, (foundProduct) => {
+    Product.findById(req.params.id, (err, foundProduct) => {
         res.render('show.ejs', {
             product: foundProduct
         })
