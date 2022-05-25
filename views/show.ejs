@@ -28,11 +28,35 @@
         }
         ul {
             background-color: rgb(111, 167, 167);
+            border: 1px solid red;
+            width: 15%;
+            margin: 0 auto;
+            border-radius: 10px;
         }
         ul li {
             list-style: none;
             background-color: rgb(111, 167, 167);
             padding: 0;
+        }
+        img {
+            border-radius: 40px;
+        }
+
+        /* buttons */
+        #buy-btn {
+            border-radius: 40px;
+            margin-bottom: 20px;
+            font-size: 20px;
+
+        }
+        #buy-btn:hover {
+            cursor: pointer;
+            background-color: rgb(177, 177, 19);
+        }
+        .edit-del-btn {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -49,9 +73,23 @@
         <img src="<%= product.img %>" alt="Picture of a product">
         <li><%= product.description %></li>
         <li>Price: <%= product.price %>$</li>
-        <li>Amount: <%= product.qty %></li>
-    </ul>
+        
+        <% if (product.qty > 0) { %>
+            <li id="amountListed">Amount: <%= product.qty %></li>
+            <button id="buy-btn">Buy</button>
+        <% } else { %>
+            <li style="color:red"> Out of Stock</li>
+        <% } %>
 
+        <div class="edit-del-btn">
+            <!-- Delete form  method-override required for POST/GET-->
+            <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="DELETE" class="submit-btn" />
+            </form>
+            <!-- === Edit ROUTE === -->
+            <a href="/products/<%=product._id %>/edit">Edit</a>
+        </div>
+    </ul>
 
 </body>
 

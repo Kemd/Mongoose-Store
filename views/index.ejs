@@ -19,7 +19,7 @@
             display: grid;
             gap: 5px;
             border: solid 1px blue;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 200px);
             justify-content: space-evenly;
             background-color: rgb(111, 167, 167);
             margin: 0;
@@ -43,6 +43,16 @@
             box-shadow: 5px 5px 5px black;
             margin-bottom: 15px;
         }
+        /* === buttons === */
+        .submit-btn {
+            background-color: bisque;
+        }
+        .edit-del-btn {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 
@@ -58,15 +68,18 @@
                 </a>
             </li>
             <li><%= product.description %></li>
-            <li>Price: <%= product.price %>$</li>
-            <li>Amount: <%= product.qty %></li>
+            <!-- <li>Price: <%= product.price %>$</li>
+            <li>Amount: <%= product.qty %></li> -->
             <br>
-            <!-- Delete form  method-override required for POST/GET-->
-            <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
-                <input type="submit" value="DELETE" />
-            </form>
-            <!-- === Edit ROUTE === -->
-            <a href="/products/<%=product._id %>/edit">Edit</a>
+            <!-- <div class="edit-del-btn">
+                Delete form  method-override required for POST/GET
+                <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                    <input type="submit" value="DELETE" class="submit-btn" />
+                </form>
+                === Edit ROUTE ===
+                <a href="/products/<%=product._id %>/edit">Edit</a>
+            </div> -->
+            
         </ul>
         <% }) %>
     </DIV>
