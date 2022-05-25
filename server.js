@@ -5,6 +5,7 @@ const Product = require('./models/products.js')
 // === seed data for testing, delete after === 
 const productSeed = require('./models/productSeed')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const req = require('express/lib/request')
 
 const app = express()
@@ -25,6 +26,7 @@ db.on('disconnected', () => console.log('Mongodb is disconnected'))
 app.use(express.urlencoded({
     extended: false
 }))
+app.use(methodOverride('_method'))
 
 
 // === ROUTES start ===
@@ -57,8 +59,22 @@ app.get('/products', (req, res) => {
 app.get('/products/new', (req, res) => {
     res.render('new.ejs')
 })
+
 // === Delete ===
+app.delete('/products/:id', (req, res) => {
+    Product.findByIdAndDelete(req.params.id, () => { // error, data
+        res.redirect('/products')
+    })
+})
+
 // === Update ===
+app.put('/products/:id', (req, res) => {
+    Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true, // allow you receive the updated document, override previous data with req.body
+    }, () => { // error, updatedProduct
+        res.redirect(`/products/${req.params.id}`)
+    })
+})
 
 
 // === Create ===
@@ -70,6 +86,14 @@ app.post('/products', (req, res) => {
 
 
 // === Edit ===
+app.get("/products/:id/edit", (req, res) => {
+    Product.findById(req.params.id, (error, foundProduct) => {
+      res.render("edit.ejs", {
+        product: foundProduct,
+      })
+    })
+  })
+
 // === Show ===
 app.get('/products/:id', (req, res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
