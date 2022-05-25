@@ -5,38 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Page</title>
+    <style>
+
+        body {
+            height: 80vh;
+            width: auto;
+            background-color: bisque;
+            /* background: url('https://i.pinimg.com/originals/0a/89/e5/0a89e52b14876e2e51f79aebc8052485.gif') no-repeat; */
+            text-align: center;
+        }
+
+        form {
+            border: 1px solid blue;
+            width: 40%;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            padding: 50px;
+            background-color: aliceblue;
+            border-radius: 25px;
+        }
+
+        input {
+            border: 1px solid rgb(95, 41, 146);
+            border-radius: 10px;
+            font-size: 15px;
+        }
+    </style>
 
 </head>
 <body>
-    <h1>New Page</h1>
-
+    
     <div class="new-container">
         <div class="form-image"></div>
-        <div>
+        <div class="form">
+            <h1>Create a product</h1>
             <form action="/products" method="POST">
-        
-                <label for="name">Name:</label>
+                <label for="name">Name:</label><br>
                     <input type="text" name="name" />
                 <br>
-                <label for="description">description:</label>
+                <label for="description">description:</label><br>
                     <input type="text" name="description" />
                 <br>
-                <label for="price">Price:</label>
+                <label for="price">Price:</label><br>
                     <input type="number" name="price" />
                 <br>
-                <label for="quantity">Quantity:</label>
+                <label for="quantity">Quantity:</label><br>
                     <input type="number" name="qty" />
                 <br>
-                <label for="image">Image:</label>
+                <label for="image">Image:</label><br>
                 <img src="" alt="">
                     <input type="file" name="img" />
                 <br>
-                <label for="Submit"></label>
+                <label for="Submit"></label><br>
                 <input type="submit" value="Create" />
         
             </form>
         </div>
     </div>
+    <a href="/products">Back to Shop</a>
     
 </body>
 </html>
