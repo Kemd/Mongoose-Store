@@ -6,28 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Page</title>
+    <style>
+        body {
+            background-color: bisque;
+        }
+        h1 {
+            text-align: center;
+        }
+.list-container {
+    display: grid;
+    gap: 5px;
+    border: solid 1px blue;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+    background-color: rgb(111, 167, 167);
+    margin: 0;
+}
+
+ul {
+    font-size: 20px;
+    text-align: center;
+    padding: 0;
+    background-color: rgb(160, 204, 187);
+}
+
+ul li {
+    list-style: none;
+}
+
+        #img,
+        img {
+            width: 100px;
+            border-radius: 35px;
+            box-shadow: 5px 5px 5px black;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>SHOP / Products</h1>
-
-    <ul>
+    <DIV class="list-container">
         <% products.forEach(product => { %>
-        <li>
-            <a href="/products/<%=product._id%>">
-                <h2><%= product.name %></h2>
-                <hr>
-                <img src="<%= product.img %>">
-            </a>
-        </li>
-        <li><%= product.description %></li>
-        <li><%= product.price %></li>
-        <li><%= product.qty %></li>
-        <br>
+        <ul>
+            <li>
+                <a href="/products/<%=product._id%>">
+                    <h2><%= product.name %></h2>
+                    <img src="<%= product.img %>">
+                </a>
+            </li>
+            <li><%= product.description %></li>
+            <li>Price: <%= product.price %>$</li>
+            <li>Amount: <%= product.qty %></li>
+            <br>
 
+        </ul>
         <% }) %>
-    </ul>
-
+    </DIV>
 </body>
 
 </html>
