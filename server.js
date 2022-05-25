@@ -62,7 +62,7 @@ app.get('/products/new', (req, res) => {
 
 // === Delete ===
 app.delete('/products/:id', (req, res) => {
-    Product.findByIdAndDelete(req.params.id, () => { // error, data
+    Product.findByIdAndDelete(req.params.id, () => { 
         res.redirect('/products')
     })
 })
@@ -71,7 +71,7 @@ app.delete('/products/:id', (req, res) => {
 app.put('/products/:id', (req, res) => {
     Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true, // allow you receive the updated document, override previous data with req.body
-    }, () => { // error, updatedProduct
+    }, () => {
         res.redirect(`/products/${req.params.id}`)
     })
 })
@@ -79,7 +79,7 @@ app.put('/products/:id', (req, res) => {
 
 // === Create ===
 app.post('/products', (req, res) => {
-    Product.create(req.body, (err, createdProduct) => {
+    Product.create(req.body, () => {
         res.redirect('/products')
     })
 })

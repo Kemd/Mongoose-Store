@@ -10,29 +10,31 @@
         body {
             background-color: bisque;
         }
+
         h1 {
             text-align: center;
         }
-.list-container {
-    display: grid;
-    gap: 5px;
-    border: solid 1px blue;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: space-evenly;
-    background-color: rgb(111, 167, 167);
-    margin: 0;
-}
 
-ul {
-    font-size: 20px;
-    text-align: center;
-    padding: 0;
-    background-color: rgb(160, 204, 187);
-}
+        .list-container {
+            display: grid;
+            gap: 5px;
+            border: solid 1px blue;
+            grid-template-columns: repeat(3, 1fr);
+            justify-content: space-evenly;
+            background-color: rgb(111, 167, 167);
+            margin: 0;
+        }
 
-ul li {
-    list-style: none;
-}
+        ul {
+            font-size: 20px;
+            text-align: center;
+            padding: 0;
+            background-color: rgb(160, 204, 187);
+        }
+
+        ul li {
+            list-style: none;
+        }
 
         #img,
         img {
@@ -59,7 +61,12 @@ ul li {
             <li>Price: <%= product.price %>$</li>
             <li>Amount: <%= product.qty %></li>
             <br>
-
+            <!-- Delete form  method-override required for POST/GET-->
+            <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="DELETE" />
+            </form>
+            <!-- === Edit ROUTE === -->
+            <a href="/products/<%=product._id %>/edit">Edit</a>
         </ul>
         <% }) %>
     </DIV>

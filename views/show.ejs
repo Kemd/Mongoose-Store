@@ -6,6 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Page</title>
+    <style>
+        body {
+            background-color: bisque;
+        }
+        nav {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        nav a {
+            text-decoration: none;
+            font-size: 20px;
+            background-color: rgb(80, 104, 126);
+            color: bisque;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        nav a:hover {
+            box-shadow: 2px 2px 2px rgb(107, 103, 103);
+            color: white;
+        }
+        ul {
+            background-color: rgb(111, 167, 167);
+        }
+        ul li {
+            list-style: none;
+            background-color: rgb(111, 167, 167);
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,8 +48,8 @@
         <h2><%= product.name %></h2>
         <img src="<%= product.img %>" alt="Picture of a product">
         <li><%= product.description %></li>
-        <li><%= product.price %></li>
-        <li><%= product.qty %></li>
+        <li>Price: <%= product.price %>$</li>
+        <li>Amount: <%= product.qty %></li>
     </ul>
 
 
