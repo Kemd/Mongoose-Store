@@ -73,10 +73,11 @@
         <img src="<%= product.img %>" alt="Picture of a product">
         <li><%= product.description %></li>
         <li>Price: <%= product.price %>$</li>
-        
+        <!-- === button that would remove an item when clicked === -->
         <% if (product.qty > 0) { %>
             <li id="amountListed">Amount: <%= product.qty %></li>
             <button id="buy-btn">Buy</button>
+
         <% } else { %>
             <li style="color:red"> Out of Stock</li>
         <% } %>

@@ -98,7 +98,7 @@ app.get("/products/:id/edit", (req, res) => {
 app.get('/products/:id', (req, res) => {
     Product.findById(req.params.id, (err, foundProduct) => {
         res.render('show.ejs', {
-            product: foundProduct
+            product: foundProduct,
         })
     })
 })
